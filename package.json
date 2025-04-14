@@ -1,6 +1,7 @@
 {
   "name": "my-portfolio",
   "version": "0.1.0",
+  "homepage": "https://viljar90.github.io/portfolio/",
   "private": true,
   "dependencies": {
     "@heroicons/react": "^2.2.0",
