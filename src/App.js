@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import useDarkMode from './components/hooks/useDarkMode'; // Dark mode state hook
+import DarkModeToggle from './components/DarkModeToggle'; // Toggle button
+import WelcomeSpotlightDemo from './pages/Landing'; // Landing page content
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    const [darkMode, setDarkMode] = useDarkMode(); // Use dark mode hook
+
+    const toggleDarkMode = () => setDarkMode(!darkMode); // Toggle dark mode state
+
+    return (
+        <div
+            className={`
+                min-h-screen transition-colors duration-500 
+                bg-customLight text-black 
+                dark:bg-customDark dark:text-white
+            `}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            {/* Dark Mode Toggle */}
+            <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+
+            {/* Main Content */}
+            <WelcomeSpotlightDemo />
+        </div>
+    );
 }
 
 export default App;

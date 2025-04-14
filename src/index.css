@@ -1,13 +1,68 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Tailwind's base, components, utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animation for text rising with shadow blur transition */
+@keyframes text-rise {
+  0% {
+    transform: translateY(15px); /* Start below center */
+    text-shadow: none; /* Absolutely no shadow initially */
+  }
+  30% {
+    transform: translateY(12px);
+    text-shadow: none; /* Still no shadow for a moment */
+  }
+  40% {
+    transform: translateY(10px);
+    text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.95); /* Very sharp, crisp shadow appears */
+  }
+  70% {
+    transform: translateY(5px);
+    text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.7); /* Shadow starts to blur */
+  }
+  100% {
+    transform: translateY(0); /* End at center */
+    text-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4); /* Transition to very blurred shadow */
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Animation for the text rise and shadow transition */
+h1 {
+  animation: text-rise 1.8s ease forwards; /* Extended animation time for more noticeable stages */
+}
+
+/* Once animation completes, hold the final state */
+h1.finished-animation {
+  animation: none; /* Disable animation after completion */
+  text-shadow: none; /* Explicitly remove shadow when finished */
+}
+
+/* Mouse cursor pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pulse-custom {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* General light/dark mode theme styles */
+body {
+  @apply bg-customLight text-gray-900 transition-colors duration-500; /* Default light mode */
+}
+
+body.dark {
+  @apply bg-customDark text-gray-200; /* Switch to dark mode */
 }

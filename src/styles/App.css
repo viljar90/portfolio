@@ -1,0 +1,118 @@
+/* Tailwind's base, components, utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Improved fade-in animation with subtle zoom */
+@keyframes fade-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-zoom-in-title {
+  animation: fade-zoom-in 1.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  /* Using a custom easing function for smoother animation */
+}
+
+/* Keep the original fade-in animation as well */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in-title {
+  animation: fade-in 1.2s ease-out forwards;
+}
+
+/* Mouse cursor pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pulse-custom {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* General light/dark mode theme styles */
+body {
+  @apply bg-customLight text-gray-900 transition-colors duration-500; /* Default light mode */
+}
+
+body.dark {
+  @apply bg-customDark text-gray-200; /* Switch to dark mode */
+}
+
+/* Add this to your App.css file to support the cut-out text effect */
+.text-transparent {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Add this specific style for the cut-out effect */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .cut-out-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: rgba(0, 0, 0, 0);
+    -webkit-text-fill-color: rgba(0, 0, 0, 0);
+  }
+}
+
+/* Support for CSS masks */
+@supports (-webkit-mask-image: url('')) or (mask-image: url('')) {
+  .mask-text {
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+}
+
+/* Button container with improved positioning for cut-out effect */
+.button-container {
+  position: relative;
+  width: 300px;
+  height: 60px;
+  overflow: hidden; /* Keep shadow inside the container */
+}
+
+/* Button with cutout styling */
+.button-with-cutout {
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+}
+
+/* Background for button effects */
+.bg-page {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.7; }
+}
